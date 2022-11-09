@@ -52,7 +52,7 @@ export const Login = () => {
   const toast = useToast()
 
   const [formState, setFormState] = React.useState<LoginRequest>({
-    username: '',
+    email: '',
     password: '',
   })
 
@@ -70,7 +70,7 @@ export const Login = () => {
         <InputGroup>
           <Input
             onChange={handleChange}
-            name="username"
+            name="email"
             type="text"
             placeholder="Email"
           />

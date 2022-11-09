@@ -61,6 +61,27 @@ export const Login = () => {
   }: React.ChangeEvent<HTMLInputElement>) =>
     setFormState((prev) => ({ ...prev, [name]: value }))
 
+  const submit = async () => {
+    try {
+      console.log('00000000000000000000')
+      const user = await login(formState).unwrap()
+      console.log('111111111111111111111')
+      console.log('user => ', user)
+      dispatch(setCredentials(user))
+      navigate('/counter')
+    } catch (err) {
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
+      console.log(err)
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
+      toast({
+        status: 'error',
+        title: 'Error',
+        description: 'Oh no, there was an error!',
+        isClosable: true,
+      })
+    }
+  }
+
   return (
     <Center h="500px">
       <VStack spacing="4">
@@ -80,21 +101,7 @@ export const Login = () => {
         <Button
           size='md'
           width='100%'
-          onClick={async () => {
-            try {
-              const user = await login(formState).unwrap()
-              console.log('user => ', user)
-              dispatch(setCredentials(user))
-              navigate('/')
-            } catch (err) {
-              toast({
-                status: 'error',
-                title: 'Error',
-                description: 'Oh no, there was an error!',
-                isClosable: true,
-              })
-            }
-          }}
+          onClick={submit}
           colorScheme="green"
           isLoading={isLoading}
         >

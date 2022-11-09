@@ -5,10 +5,12 @@ import authReducer from '../features/auth/authSlice'
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     [api.reducerPath]: api.reducer,
+    counter: counterReducer,
     auth: authReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -19,3 +21,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+

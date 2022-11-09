@@ -63,16 +63,11 @@ export const Login = () => {
 
   const submit = async () => {
     try {
-      console.log('00000000000000000000')
       const user = await login(formState).unwrap()
-      console.log('111111111111111111111')
       console.log('user => ', user)
       dispatch(setCredentials(user))
       navigate('/counter')
     } catch (err) {
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
-      console.log(err)
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
       toast({
         status: 'error',
         title: 'Error',

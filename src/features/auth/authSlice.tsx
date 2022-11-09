@@ -18,6 +18,7 @@ const slice = createSlice({
         ) => {
             state.user = user
             state.accessToken = accessToken
+            localStorage.setItem("token", accessToken)
         },
     },
 })

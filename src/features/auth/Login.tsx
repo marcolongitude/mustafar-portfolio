@@ -5,7 +5,6 @@ import {
   InputRightElement,
   VStack,
   Button,
-  Divider,
   Center,
   Box,
   useToast,
@@ -14,7 +13,6 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './authSlice'
 
-import { ProtectedComponent } from './ProtectedComponent'
 import { useLoginMutation } from '../../app/services/auth'
 import type { LoginRequest } from '../../app/services/auth'
 
@@ -39,7 +37,7 @@ function PasswordInput({
       />
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
-          {show ? 'Hide' : 'Show'}
+          {show ? 'Esconder' : 'Mostrar'}
         </Button>
       </InputRightElement>
     </InputGroup>
@@ -66,13 +64,13 @@ export const Login = () => {
   return (
     <Center h="500px">
       <VStack spacing="4">
-        <Box>Hint: enter anything, or leave it blank and hit login</Box>
+        <Box>DASHBOARD - Portfólio - Marco Aurélio</Box>
         <InputGroup>
           <Input
             onChange={handleChange}
             name="email"
             type="text"
-            placeholder="Email"
+            placeholder="Digite a senha"
           />
         </InputGroup>
 
@@ -80,7 +78,7 @@ export const Login = () => {
           <PasswordInput onChange={handleChange} name="password" />
         </InputGroup>
         <Button
-          size='lg'
+          size='md'
           width='100%'
           onClick={async () => {
             try {
@@ -99,10 +97,8 @@ export const Login = () => {
           colorScheme="green"
           isLoading={isLoading}
         >
-          Login
+          Entrar
         </Button>
-        <Divider />
-        <ProtectedComponent />
       </VStack>
     </Center>
   )

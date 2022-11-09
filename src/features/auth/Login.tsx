@@ -83,6 +83,7 @@ export const Login = () => {
           onClick={async () => {
             try {
               const user = await login(formState).unwrap()
+              console.log('user => ', user)
               dispatch(setCredentials(user))
               navigate('/')
             } catch (err) {

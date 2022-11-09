@@ -8,9 +8,11 @@ export interface User {
 
 export interface UserResponse {
     user: User
-    token: string
+    accessToken: string
     authenticated: boolean
     message: string
+    expiration: Date
+    created: Date
 }
 
 export interface LoginRequest {
@@ -23,7 +25,7 @@ export const api = createApi({
         baseUrl: 'http://localhost:5000/api/',
         prepareHeaders: (headers, { getState }) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
-            const token = (getState() as RootState).auth.token
+            const token = (getState() as RootState).auth.accessToken
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)
             }

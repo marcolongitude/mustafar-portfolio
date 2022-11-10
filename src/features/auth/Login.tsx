@@ -48,13 +48,12 @@ export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
+  const [login, { isLoading }] = useLoginMutation()
 
   const [formState, setFormState] = React.useState<LoginRequest>({
     email: '',
     password: '',
   })
-
-  const [login, { isLoading }] = useLoginMutation()
 
   const handleChange = ({
     target: { name, value },
@@ -69,7 +68,7 @@ export const Login = () => {
     } catch (err) {
       toast({
         status: 'error',
-        title: 'Error',
+        title: 'Erro',
         description: 'Houve um problema, entre em contato com o administrador!',
         isClosable: true,
       })
@@ -96,7 +95,7 @@ export const Login = () => {
           size='md'
           width='100%'
           onClick={submit}
-          colorScheme="green"
+          colorScheme="blue"
           isLoading={isLoading}
         >
           Entrar

@@ -10,7 +10,7 @@ type AuthState = {
 
 const slice = createSlice({
     name: 'auth',
-    initialState: { user: null, accessToken: null } as AuthState,
+    initialState: { user: {}, accessToken: null } as AuthState,
     reducers: {
         setCredentials: (
             state,
@@ -27,4 +27,6 @@ export const { setCredentials } = slice.actions
 
 export default slice.reducer
 
-export const selectCurrentUser = (state: RootState) => state.auth.user
+export const selectCurrentUser = function (state: RootState) {
+    return state.auth.user
+} 

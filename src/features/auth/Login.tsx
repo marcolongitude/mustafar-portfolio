@@ -64,14 +64,14 @@ export const Login = () => {
   const submit = async () => {
     try {
       const user = await login(formState).unwrap()
-      console.log('user => ', user)
       dispatch(setCredentials(user))
       navigate('/counter')
+      console.log('user => ', user)
     } catch (err) {
       toast({
         status: 'error',
         title: 'Error',
-        description: 'Oh no, there was an error!',
+        description: 'Houve um problema, entre em contato com o administrador!',
         isClosable: true,
       })
     }

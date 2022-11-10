@@ -11,9 +11,10 @@ function App() {
     <Box>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/counter" element={<Counter />} />
-        <Route path="*" element={<PrivateOutlet />}>
+        <Route element={<PrivateOutlet />}>
+          <Route path="/counter" element={<Counter />} />
         </Route>
+        <Route path="*" element={<PrivateOutlet />} />
       </Routes>
     </Box>
   )

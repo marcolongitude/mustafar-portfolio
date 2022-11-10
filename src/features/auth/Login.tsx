@@ -8,7 +8,10 @@ import {
   Center,
   Box,
   useToast,
+  Highlight,
 } from '@chakra-ui/react'
+import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './authSlice'
@@ -37,7 +40,7 @@ function PasswordInput({
       />
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
-          {show ? 'Esconder' : 'Mostrar'}
+          {show ? <ViewOffIcon /> : <ViewIcon />}
         </Button>
       </InputRightElement>
     </InputGroup>
@@ -78,7 +81,9 @@ export const Login = () => {
   return (
     <Center h="500px">
       <VStack spacing="4">
-        <Box>DASHBOARD - Portfólio - Marco Aurélio</Box>
+        <Highlight query='DASHBOARD' styles={{ px: '1', py: '1', bg: 'gray.100', borderRadius: 'md', paddingTop: '2', paddingRight: '4', paddingLeft: '4', paddingBottom: '2' }}  >
+          DASHBOARD Portfólio - Marco Aurélio
+        </Highlight>
         <InputGroup>
           <Input
             onChange={handleChange}
@@ -97,6 +102,7 @@ export const Login = () => {
           onClick={submit}
           colorScheme="blue"
           isLoading={isLoading}
+          rightIcon={<ArrowForwardIcon />}
         >
           Entrar
         </Button>

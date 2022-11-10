@@ -66,7 +66,6 @@ export const Login = () => {
       const user = await login(formState).unwrap()
       dispatch(setCredentials(user))
       navigate('/counter')
-      console.log('user => ', user)
     } catch (err) {
       toast({
         status: 'error',

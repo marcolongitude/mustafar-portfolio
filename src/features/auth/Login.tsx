@@ -9,6 +9,7 @@ import {
   Box,
   useToast,
   Highlight,
+  Flex
 } from '@chakra-ui/react'
 import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 
@@ -79,35 +80,63 @@ export const Login = () => {
   }
 
   return (
-    <Center h="500px">
-      <VStack spacing="4">
-        <Highlight query='DASHBOARD' styles={{ px: '1', py: '1', bg: 'gray.100', borderRadius: 'md', paddingTop: '2', paddingRight: '4', paddingLeft: '4', paddingBottom: '2' }}  >
-          DASHBOARD Portfólio - Marco Aurélio
-        </Highlight>
-        <InputGroup>
-          <Input
-            onChange={handleChange}
-            name="email"
-            type="text"
-            placeholder="Digite a senha"
-          />
-        </InputGroup>
-
-        <InputGroup>
-          <PasswordInput onChange={handleChange} name="password" />
-        </InputGroup>
-        <Button
-          size='md'
-          width='100%'
-          onClick={submit}
-          colorScheme="blue"
-          isLoading={isLoading}
-          rightIcon={<ArrowForwardIcon />}
+    <Box width='100%' h='100vh' bg='gray.100' display='flex' justifyContent='center' alignItems='center'>
+        <Box 
+          bg="blackAlpha.800" 
+          width='50%'
+          h='350px'
+          borderRadius='15'
+          display='flex'
+          justifyContent='center'
         >
-          Entrar
-        </Button>
-      </VStack>
-    </Center>
+          <Center>
+            <VStack spacing="4">
+              <Flex justify='center' align='center' direction='column'>
+                <Highlight 
+                  query='DASHBOARD' 
+                  styles={{ 
+                    px: '1', 
+                    py: '1', 
+                    bg: 'blackAlpha.600',
+                    color:'white', 
+                    borderRadius: 'md', 
+                    paddingTop: '2', 
+                    paddingRight: '4', 
+                    paddingLeft: '4', 
+                    paddingBottom: '2' 
+                  }}  
+                >
+                  DASHBOARD Portfólio - Marco Aurélio
+                </Highlight>
+                <InputGroup m={5}>
+                  <Input
+                    onChange={handleChange}
+                    name="email"
+                    type="text"
+                    placeholder="Digite a senha"
+                  />
+                </InputGroup>
+
+                <InputGroup mb={5}>
+                  <PasswordInput onChange={handleChange} name="password" />
+                </InputGroup>
+
+                <Button
+                  m={3}
+                  size='md'
+                  width='100%'
+                  onClick={submit}
+                  colorScheme="blue"
+                  isLoading={isLoading}
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Entrar
+                </Button>
+              </Flex>
+            </VStack>
+          </Center>
+        </Box>
+    </Box>
   )
 }
 

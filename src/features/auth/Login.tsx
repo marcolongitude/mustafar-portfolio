@@ -9,7 +9,8 @@ import {
   Box,
   useToast,
   Highlight,
-  Flex
+  Flex,
+  useColorModeValue
 } from '@chakra-ui/react'
 import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 
@@ -41,7 +42,7 @@ function PasswordInput({
         onChange={onChange}
       />
       <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" onClick={handleClick}>
+        <Button h="1.65rem" size="sm" bg={'gray.600'} onClick={handleClick}>
           {show ? <ViewOffIcon /> : <ViewIcon />}
         </Button>
       </InputRightElement>
@@ -113,7 +114,7 @@ export const Login = () => {
               onChange={handleChange}
               name="email"
               type="text"
-              placeholder="Digite a senha"
+              placeholder="Digite seu email"
               _placeholder={{ opacity: 1, color: 'blue.400' }}
             />
           </InputGroup>

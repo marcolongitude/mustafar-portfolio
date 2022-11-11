@@ -11,12 +11,16 @@ import {
 } from './counterSlice';
 import styles from './Counter.module.css';
 
+import { Button, useColorMode } from '@chakra-ui/react'
+
 export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
+
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <div>
@@ -63,6 +67,11 @@ export function Counter() {
           Add If Odd
         </button>
       </div>
+      <header>
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+      </header>
     </div>
   );
 }

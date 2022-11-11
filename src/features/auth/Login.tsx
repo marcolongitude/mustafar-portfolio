@@ -36,6 +36,7 @@ function PasswordInput({
         pr="4.5rem"
         type={show ? 'text' : 'password'}
         placeholder="Enter password"
+        _placeholder={{ opacity: 1, color: 'blue.400' }}
         name={name}
         onChange={onChange}
       />
@@ -81,61 +82,59 @@ export const Login = () => {
 
   return (
     <Box width='100%' h='100vh' bg='gray.100' display='flex' justifyContent='center' alignItems='center'>
-        <Box 
-          bg="blackAlpha.800" 
-          width='50%'
-          h='350px'
-          borderRadius='15'
-          display='flex'
-          justifyContent='center'
-        >
-          <Center>
-            <VStack spacing="4">
-              <Flex justify='center' align='center' direction='column'>
-                <Highlight 
-                  query='DASHBOARD' 
-                  styles={{ 
-                    px: '1', 
-                    py: '1', 
-                    bg: 'blackAlpha.600',
-                    color:'white', 
-                    borderRadius: 'md', 
-                    paddingTop: '2', 
-                    paddingRight: '4', 
-                    paddingLeft: '4', 
-                    paddingBottom: '2' 
-                  }}  
-                >
-                  DASHBOARD Portfólio - Marco Aurélio
-                </Highlight>
-                <InputGroup m={5}>
-                  <Input
-                    onChange={handleChange}
-                    name="email"
-                    type="text"
-                    placeholder="Digite a senha"
-                  />
-                </InputGroup>
+      <Box
+        bg="blackAlpha.800"
+        width='50%'
+        h='350px'
+        borderRadius='15'
+        display='flex'
+        justifyContent='center'
+      >
+        <Flex justify='center' align='center' direction='column' color='white'>
+          <Highlight
+            query='DASHBOARD'
+            styles={{
+              px: '1',
+              py: '1',
+              bg: 'blackAlpha.600',
+              color: 'white',
+              borderRadius: 'md',
+              paddingTop: '2',
+              paddingRight: '4',
+              paddingLeft: '4',
+              paddingBottom: '2',
+              mb: '4'
+            }}
+          >
+            DASHBOARD Portfólio - Marco Aurélio
+          </Highlight>
+          <InputGroup m={5}>
+            <Input
+              onChange={handleChange}
+              name="email"
+              type="text"
+              placeholder="Digite a senha"
+              _placeholder={{ opacity: 1, color: 'blue.400' }}
+            />
+          </InputGroup>
 
-                <InputGroup mb={5}>
-                  <PasswordInput onChange={handleChange} name="password" />
-                </InputGroup>
+          <InputGroup mb={5}>
+            <PasswordInput onChange={handleChange} name="password" />
+          </InputGroup>
 
-                <Button
-                  m={3}
-                  size='md'
-                  width='100%'
-                  onClick={submit}
-                  colorScheme="blue"
-                  isLoading={isLoading}
-                  rightIcon={<ArrowForwardIcon />}
-                >
-                  Entrar
-                </Button>
-              </Flex>
-            </VStack>
-          </Center>
-        </Box>
+          <Button
+            m={3}
+            size='md'
+            width='100%'
+            onClick={submit}
+            colorScheme="blue"
+            isLoading={isLoading}
+            rightIcon={<ArrowForwardIcon />}
+          >
+            Entrar
+          </Button>
+        </Flex>
+      </Box>
     </Box>
   )
 }

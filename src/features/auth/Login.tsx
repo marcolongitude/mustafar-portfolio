@@ -37,7 +37,7 @@ function PasswordInput({
         pr="4.5rem"
         type={show ? 'text' : 'password'}
         placeholder="Enter password"
-        _placeholder={{ opacity: 1, color: 'blue.400' }}
+        _placeholder={{ opacity: 1, color: 'white' }}
         name={name}
         onChange={onChange}
       />
@@ -85,7 +85,8 @@ export const Login = () => {
     <Box width='100%' h='100vh' bg='gray.100' display='flex' justifyContent='center' alignItems='center'>
       <Box
         bg="blackAlpha.800"
-        width='50%'
+        width='30%'
+        minW='72'
         h='350px'
         borderRadius='15'
         display='flex'
@@ -115,7 +116,7 @@ export const Login = () => {
               name="email"
               type="text"
               placeholder="Digite seu email"
-              _placeholder={{ opacity: 1, color: 'blue.400' }}
+              _placeholder={{ opacity: 1, color: 'white' }}
             />
           </InputGroup>
 

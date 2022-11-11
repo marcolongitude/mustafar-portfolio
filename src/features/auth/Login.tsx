@@ -3,20 +3,19 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  VStack,
   Button,
-  Center,
   Box,
   useToast,
   Highlight,
   Flex,
-  useColorModeValue
 } from '@chakra-ui/react'
-import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
 
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './authSlice'
+
+import { ButtonActionSuccess } from '../../components/button/ButtonActionSuccess'
 
 import { useLoginMutation } from '../../app/services/auth'
 import type { LoginRequest } from '../../app/services/auth'
@@ -124,17 +123,12 @@ export const Login = () => {
             <PasswordInput onChange={handleChange} name="password" />
           </InputGroup>
 
-          <Button
-            m={3}
-            size='md'
-            width='100%'
-            onClick={submit}
-            colorScheme="blue"
+          <ButtonActionSuccess
+            action={submit}
+            description="Entrar"
             isLoading={isLoading}
-            rightIcon={<ArrowForwardIcon />}
-          >
-            Entrar
-          </Button>
+          />
+
         </Flex>
       </Box>
     </Box>

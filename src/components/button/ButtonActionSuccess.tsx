@@ -9,9 +9,10 @@ interface ActionButton {
     action: any
     isLoading: boolean
     description: string
+    typeAction: "button" | "reset" | "submit"
 }
 
-export const ButtonActionSuccess = ({ action, isLoading, description, ...props }: ActionButton) => {
+export const ButtonActionSuccess = ({ action, isLoading, description, typeAction, ...props }: ActionButton) => {
     return (
         <Button
             m={3}
@@ -21,6 +22,7 @@ export const ButtonActionSuccess = ({ action, isLoading, description, ...props }
             colorScheme="blue"
             isLoading={isLoading}
             rightIcon={<ArrowForwardIcon />}
+            type={typeAction}
         >
             Entrar
         </Button>

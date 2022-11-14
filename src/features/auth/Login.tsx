@@ -1,5 +1,7 @@
 import * as React from 'react'
 import {
+  FormErrorMessage,
+  FormControl,
   Input,
   InputGroup,
   InputRightElement,
@@ -14,60 +16,32 @@ import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './authSlice'
+import { useForm } from 'react-hook-form'
 
 import { ButtonActionSuccess } from '../../components/button/ButtonActionSuccess'
 
 import { useLoginMutation } from '../../app/services/auth'
 import type { LoginRequest } from '../../app/services/auth'
 
-function PasswordInput({
-  name,
-  onChange,
-}: {
-  name: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}) {
-  const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
 
-  return (
-    <InputGroup size="md">
-      <Input
-        pr="4.5rem"
-        type={show ? 'text' : 'password'}
-        placeholder="Enter password"
-        _placeholder={{ opacity: 1, color: 'white' }}
-        name={name}
-        onChange={onChange}
-      />
-      <InputRightElement width="4.5rem">
-        <Button h="1.65rem" size="sm" bg={'gray.600'} onClick={handleClick}>
-          {show ? <ViewOffIcon /> : <ViewIcon />}
-        </Button>
-      </InputRightElement>
-    </InputGroup>
-  )
-}
+type FormValues = {
+  password: string;
+  email: string;
+};
 
 export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
   const [login, { isLoading }] = useLoginMutation()
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
-  const [formState, setFormState] = React.useState<LoginRequest>({
-    email: '',
-    password: '',
-  })
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-  const handleChange = ({
-    target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement>) =>
-    setFormState((prev) => ({ ...prev, [name]: value }))
-
-  const submit = async () => {
+  async function onSubmit(values: LoginRequest) {
     try {
-      const user = await login(formState).unwrap()
+      const user = await login(values).unwrap()
       dispatch(setCredentials(user))
       navigate('/counter')
     } catch (err) {
@@ -109,26 +83,53 @@ export const Login = () => {
           >
             DASHBOARD Portfólio - Marco Aurélio
           </Highlight>
-          <InputGroup m={5}>
-            <Input
-              onChange={handleChange}
-              name="email"
-              type="text"
-              placeholder="Digite seu email"
-              _placeholder={{ opacity: 1, color: 'white' }}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl isInvalid={errors.email ? true : false} >
+              <InputGroup m={5}>
+                <Input
+                  {...register('email', {
+                    required: 'Campo obrigatório',
+                    pattern: { value: /^\S+@\S+$/i, message: "Digite um email válido" }
+                  })}
+                  type="required"
+                  placeholder="Digite seu email"
+                  _placeholder={{ opacity: 1, color: 'white' }}
+                />
+              </InputGroup>
+              <FormErrorMessage color='white'>
+                {errors?.email && errors.email.message}
+              </FormErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={errors.password ? true : false} >
+              <InputGroup mb={5}>
+                <Input
+                  {...register('password', {
+                    required: 'Campo obrigatório',
+                    minLength: { value: 6, message: 'A senha deve ter no mínimo 6 caracteres' },
+                  })}
+                  pr="4.5rem"
+                  type={show ? 'text' : 'password'}
+                  placeholder="Digite a senha"
+                  _placeholder={{ opacity: 1, color: 'white' }}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.65rem" size="sm" bg={'gray.600'} onClick={handleClick}>
+                    {show ? <ViewOffIcon /> : <ViewIcon />}
+                  </Button>
+                </InputRightElement>
+                <FormErrorMessage color='white'>
+                  {errors?.password && errors.password.message}
+                </FormErrorMessage>
+              </InputGroup>
+            </FormControl>
+            <ButtonActionSuccess
+              typeAction="submit"
+              description="Entrar"
+              isLoading={isLoading}
+              action={undefined}
             />
-          </InputGroup>
-
-          <InputGroup mb={5}>
-            <PasswordInput onChange={handleChange} name="password" />
-          </InputGroup>
-
-          <ButtonActionSuccess
-            action={submit}
-            description="Entrar"
-            isLoading={isLoading}
-          />
-
+          </form>
         </Flex>
       </Box>
     </Box>

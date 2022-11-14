@@ -22,6 +22,7 @@ import { ButtonActionSuccess } from '../../components/button/ButtonActionSuccess
 
 import { useLoginMutation } from '../../app/services/auth'
 import type { LoginRequest } from '../../app/services/auth'
+import TextHighlight from '../../components/textHyghlight/TextHighlight'
 
 
 type FormValues = {
@@ -66,23 +67,7 @@ export const Login = () => {
         justifyContent='center'
       >
         <Flex justify='center' align='center' direction='column' color='white'>
-          <Highlight
-            query='DASHBOARD'
-            styles={{
-              px: '1',
-              py: '1',
-              bg: 'blackAlpha.600',
-              color: 'white',
-              borderRadius: 'md',
-              paddingTop: '2',
-              paddingRight: '4',
-              paddingLeft: '4',
-              paddingBottom: '2',
-              mb: '4'
-            }}
-          >
-            DASHBOARD Portfólio - Marco Aurélio
-          </Highlight>
+          <TextHighlight description='DASHBOARD Portfólio - Marco Aurélio' query='DASHBOARD' />
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl isInvalid={errors.email ? true : false} >
               <InputGroup m={5}>

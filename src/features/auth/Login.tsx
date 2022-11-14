@@ -8,8 +8,8 @@ import {
   Button,
   Box,
   useToast,
-  Highlight,
   Flex,
+  Center
 } from '@chakra-ui/react'
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
 
@@ -68,52 +68,54 @@ export const Login = () => {
       >
         <Flex justify='center' align='center' direction='column' color='white'>
           <TextHighlight description='DASHBOARD Portfólio - Marco Aurélio' query='DASHBOARD' />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={errors.email ? true : false} >
-              <InputGroup m={5}>
-                <Input
-                  {...register('email', {
-                    required: 'Campo obrigatório',
-                    pattern: { value: /^\S+@\S+$/i, message: "Digite um email válido" }
-                  })}
-                  type="required"
-                  placeholder="Digite seu email"
-                  _placeholder={{ opacity: 1, color: 'white' }}
-                />
-              </InputGroup>
-              <FormErrorMessage color='white'>
-                {errors?.email && errors.email.message}
-              </FormErrorMessage>
-            </FormControl>
+          <form style={{ marginTop: '20px' }} onSubmit={handleSubmit(onSubmit)}>
+            <Flex justify='center' align='center' direction='column' color='white'>
+              <FormControl isInvalid={errors.email ? true : false} >
+                <InputGroup display='flex' flexDirection='column' mb={5}>
+                  <Input
+                    {...register('email', {
+                      required: 'Campo obrigatório',
+                      pattern: { value: /^\S+@\S+$/i, message: "Digite um email válido" }
+                    })}
+                    type="required"
+                    placeholder="Digite seu email"
+                    _placeholder={{ opacity: 1, color: 'white' }}
+                  />
+                  <FormErrorMessage color='red.500'>
+                    {errors?.email && errors.email.message}
+                  </FormErrorMessage>
+                </InputGroup>
+              </FormControl>
 
-            <FormControl isInvalid={errors.password ? true : false} >
-              <InputGroup mb={5}>
-                <Input
-                  {...register('password', {
-                    required: 'Campo obrigatório',
-                    minLength: { value: 6, message: 'A senha deve ter no mínimo 6 caracteres' },
-                  })}
-                  pr="4.5rem"
-                  type={show ? 'text' : 'password'}
-                  placeholder="Digite a senha"
-                  _placeholder={{ opacity: 1, color: 'white' }}
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.65rem" size="sm" bg={'gray.600'} onClick={handleClick}>
-                    {show ? <ViewOffIcon /> : <ViewIcon />}
-                  </Button>
-                </InputRightElement>
-                <FormErrorMessage color='white'>
-                  {errors?.password && errors.password.message}
-                </FormErrorMessage>
-              </InputGroup>
-            </FormControl>
-            <ButtonActionSuccess
-              typeAction="submit"
-              description="Entrar"
-              isLoading={isLoading}
-              action={undefined}
-            />
+              <FormControl isInvalid={errors.password ? true : false} >
+                <InputGroup display='flex' flexDirection='column' mb={5}>
+                  <Input
+                    {...register('password', {
+                      required: 'Campo obrigatório',
+                      minLength: { value: 6, message: 'A senha deve ter no mínimo 6 caracteres' },
+                    })}
+                    pr="4.5rem"
+                    type={show ? 'text' : 'password'}
+                    placeholder="Digite a senha"
+                    _placeholder={{ opacity: 1, color: 'white' }}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.65rem" size="sm" bg={'gray.600'} onClick={handleClick}>
+                      {show ? <ViewOffIcon /> : <ViewIcon />}
+                    </Button>
+                  </InputRightElement>
+                  <FormErrorMessage color='red.500'>
+                    {errors?.password && errors.password.message}
+                  </FormErrorMessage>
+                </InputGroup>
+              </FormControl>
+              <ButtonActionSuccess
+                typeAction="submit"
+                description="Entrar"
+                isLoading={isLoading}
+                action={undefined}
+              />
+            </Flex>
           </form>
         </Flex>
       </Box>

@@ -14,6 +14,8 @@ import styles from './Counter.module.css';
 import { Button, useColorMode } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
+import { SideBar } from '../../components/menuSideBar'
+
 import { logout } from '../auth/authSlice'
 
 export function Counter() {
@@ -33,6 +35,7 @@ export function Counter() {
 
   return (
     <div>
+      <SideBar />
       <div className={styles.row}>
         <button
           className={styles.button}

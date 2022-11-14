@@ -1,30 +1,31 @@
-import React from 'react'
+import React, { JSXElementConstructor } from 'react'
 import {
     Button
 } from '@chakra-ui/react'
 
-import { ArrowForwardIcon } from '@chakra-ui/icons'
 
-interface ActionButton {
+interface Props {
     action: any
     isLoading: boolean
     description: string
     typeAction: "button" | "reset" | "submit"
+    icon: any
+    colorButton: "blue" | "teal"
 }
 
-export const ButtonActionSuccess = ({ action, isLoading, description, typeAction, ...props }: ActionButton) => {
+export const ButtonActionSuccess = ({ icon, action, isLoading, description, typeAction, colorButton }: Props) => {
     return (
         <Button
             m={3}
             size='md'
             width='100%'
             onClick={action}
-            colorScheme="blue"
+            colorScheme={colorButton}
             isLoading={isLoading}
-            rightIcon={<ArrowForwardIcon />}
             type={typeAction}
+            rightIcon={icon}
         >
-            Entrar
+            {description}
         </Button>
     )
 }

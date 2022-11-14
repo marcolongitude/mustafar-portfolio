@@ -10,7 +10,7 @@ import {
   useToast,
   Flex,
 } from '@chakra-ui/react'
-import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
+import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -129,6 +129,8 @@ export const Login = () => {
               </FormControl>
 
               <ButtonActionSuccess
+                colorButton='blue'
+                icon={<ArrowForwardIcon />}
                 typeAction="submit"
                 description="Entrar"
                 isLoading={isLoading}

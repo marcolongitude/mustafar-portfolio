@@ -12,8 +12,12 @@ import {
 import styles from './Counter.module.css';
 
 import { Button, useColorMode } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+
+import { logout } from '../auth/authSlice'
 
 export function Counter() {
+  const navigate = useNavigate();
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
@@ -21,6 +25,11 @@ export function Counter() {
   const incrementValue = Number(incrementAmount) || 0;
 
   const { colorMode, toggleColorMode } = useColorMode()
+
+  const Logout = () => {
+    dispatch(logout())
+    navigate('/login')
+  }
 
   return (
     <div>
@@ -70,6 +79,9 @@ export function Counter() {
       <header>
         <Button onClick={toggleColorMode}>
           Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+        <Button onClick={() => Logout()}>
+          Logout
         </Button>
       </header>
     </div>

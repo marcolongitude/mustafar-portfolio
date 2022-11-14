@@ -9,7 +9,6 @@ import {
   Box,
   useToast,
   Flex,
-  Center
 } from '@chakra-ui/react'
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons'
 
@@ -34,10 +33,17 @@ export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
+  const [isUserLogged] = React.useState(localStorage.getItem("token"));
   const [login, { isLoading }] = useLoginMutation()
   const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
 
+  React.useEffect(() => {
+    if (isUserLogged) {
+      navigate('/counter')
+    }
+  })
+
+  const handleClick = () => setShow(!show)
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
   async function onSubmit(values: LoginRequest) {
@@ -56,7 +62,19 @@ export const Login = () => {
   }
 
   return (
-    <Box width='100%' h='100vh' bg='gray.100' display='flex' justifyContent='center' alignItems='center'>
+    <Box
+      width='100%'
+      h='100vh'
+      bg='gray.100'
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      bgGradient={[
+        'linear(to-tr, teal.500, yellow.300)',
+        'linear(to-t, blue.500, teal.500)',
+        'linear(to-b, orange.100, purple.600)',
+      ]}
+    >
       <Box
         bg="blackAlpha.800"
         width='30%'
@@ -109,6 +127,7 @@ export const Login = () => {
                   </FormErrorMessage>
                 </InputGroup>
               </FormControl>
+
               <ButtonActionSuccess
                 typeAction="submit"
                 description="Entrar"

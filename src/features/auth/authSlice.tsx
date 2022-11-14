@@ -8,9 +8,14 @@ type AuthState = {
     accessToken: string | null
 }
 
+let initialState: AuthState = {
+    user: null,
+    accessToken: null
+}
+
 const slice = createSlice({
     name: 'auth',
-    initialState: { user: null, accessToken: null } as AuthState,
+    initialState,
     reducers: {
         setCredentials: (
             state,
@@ -20,12 +25,19 @@ const slice = createSlice({
             state.accessToken = accessToken
             localStorage.setItem("token", accessToken)
         },
+        logout: (
+            state,
+        ) => {
+            state.user = initialState.user
+            state.accessToken = initialState.accessToken
+            localStorage.removeItem("token")
+        },
     },
 })
 
-export const { setCredentials } = slice.actions
+export const { setCredentials, logout } = slice.actions
 
 export default slice.reducer
 
-export const selectCurrentUser =  (state: RootState) => state.auth.user
+export const selectCurrentUser = (state: RootState) => state.auth.user
 export const selectAccessTokenUser = (state: RootState) => state.auth.accessToken

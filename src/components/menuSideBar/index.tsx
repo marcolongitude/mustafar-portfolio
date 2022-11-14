@@ -9,8 +9,12 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure,
-    Input,
+    Text,
     DrawerFooter,
+    LinkBox,
+    StackDivider,
+    VStack,
+    Box,
 } from '@chakra-ui/react'
 
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -54,12 +58,26 @@ export const SideBar: FC<SidebarProps> = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader display='flex' alignItems='center' justifyContent='center'>
+                    <DrawerHeader mb='10' display='flex' alignItems='center' justifyContent='center'>
                         <Avatar />
                     </DrawerHeader>
 
-                    <DrawerBody>
-                        <Input placeholder='Type here...' />
+                    <DrawerBody alignItems='center' justifyContent='center'>
+                        <VStack
+                            divider={<StackDivider borderColor='gray.600' />}
+                            spacing={4}
+                            align='stretch'
+                        >
+                            <Box h='20px'>
+                                Home
+                            </Box>
+                            <Box h='20px'>
+                                Lista Posts
+                            </Box>
+                            <Box h='20px'>
+                                Criar Post
+                            </Box>
+                        </VStack>
                     </DrawerBody>
 
                     <DrawerFooter>

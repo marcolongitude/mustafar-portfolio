@@ -21,6 +21,9 @@ import { ButtonActionSuccess } from '../../components/button/ButtonActionSuccess
 
 import { useLoginMutation } from '../../app/services/auth'
 import type { LoginRequest } from '../../app/services/auth'
+
+import { useAuth } from '../../hooks/useAuth'
+
 import TextHighlight from '../../components/textHyghlight/TextHighlight'
 
 
@@ -33,12 +36,12 @@ export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
-  const [isUserLogged] = React.useState(localStorage.getItem("token"));
+  const [isUserLogged] = React.useState(useAuth());
   const [login, { isLoading }] = useLoginMutation()
   const [show, setShow] = React.useState(false)
 
   React.useEffect(() => {
-    if (isUserLogged) {
+    if (isUserLogged.token) {
       navigate('/counter')
     }
   })

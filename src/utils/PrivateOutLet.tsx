@@ -1,4 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { SideBar } from '../components/menuSideBar'
 import { useAuth } from '../hooks/useAuth'
 
 export function PrivateOutlet() {
@@ -6,8 +7,11 @@ export function PrivateOutlet() {
   const location = useLocation()
 
   return auth.token ? (
-    <Outlet />
+    <>
+      <SideBar />
+      <Outlet />
+    </>
   ) : (
-    <Navigate to="/login" state={{ from: location }} />
+      <Navigate to="/login" state={{ from: location }} />
   )
 }

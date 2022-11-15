@@ -35,7 +35,7 @@ export function Counter() {
 
   return (
     <div>
-      <SideBar />
+      
       <div className={styles.row}>
         <button
           className={styles.button}

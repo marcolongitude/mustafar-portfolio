@@ -30,10 +30,11 @@ import Avatar from '../avatar'
 
 
 interface SidebarProps {
+    isOpenMenu: boolean
+    onCloseMenu: any
 }
 
-export const SideBar: FC<SidebarProps> = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export const SideBar: FC<SidebarProps> = ({isOpenMenu, onCloseMenu}: SidebarProps) => {
     const btnRef = React.useRef<any>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -46,13 +47,10 @@ export const SideBar: FC<SidebarProps> = () => {
 
     return (
         <>
-            <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-                Open
-            </Button>
             <Drawer
-                isOpen={isOpen}
+                isOpen={isOpenMenu}
                 placement='right'
-                onClose={onClose}
+                onClose={onCloseMenu}
                 finalFocusRef={btnRef}
             >
                 <DrawerOverlay />

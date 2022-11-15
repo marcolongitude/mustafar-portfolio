@@ -79,6 +79,7 @@ export const Login = () => {
       ]}
     >
       <Box
+        p='5'
         bg="blackAlpha.800"
         width='30%'
         minW='72'

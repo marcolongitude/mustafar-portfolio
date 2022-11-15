@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { SideBar } from '../components/menuSideBar'
+import { Header } from '../components/header'
 import { useAuth } from '../hooks/useAuth'
 
 export function PrivateOutlet() {
@@ -8,7 +8,7 @@ export function PrivateOutlet() {
 
   return auth.token ? (
     <>
-      <SideBar />
+      <Header />
       <Outlet />
     </>
   ) : (

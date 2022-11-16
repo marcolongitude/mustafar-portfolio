@@ -11,15 +11,31 @@ import {
 } from './counterSlice';
 import styles from './Counter.module.css';
 
+import { Button, useColorMode } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+
+import { SideBar } from '../../components/menuSideBar'
+
+import { logout } from '../auth/authSlice'
+
 export function Counter() {
+  const navigate = useNavigate();
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
 
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  const Logout = () => {
+    dispatch(logout())
+    navigate('/login')
+  }
+
   return (
     <div>
+      
       <div className={styles.row}>
         <button
           className={styles.button}
@@ -63,6 +79,14 @@ export function Counter() {
           Add If Odd
         </button>
       </div>
+      <header>
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+        <Button onClick={() => Logout()}>
+          Logout
+        </Button>
+      </header>
     </div>
   );
 }

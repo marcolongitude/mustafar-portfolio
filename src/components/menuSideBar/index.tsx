@@ -1,17 +1,12 @@
 import React, { FC } from 'react'
 import {
-    Flex,
-    Button,
     Drawer,
     DrawerBody,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    useDisclosure,
-    Text,
     DrawerFooter,
-    LinkBox,
     StackDivider,
     VStack,
     Box,
@@ -28,13 +23,12 @@ import { ButtonActionSuccess } from '../button'
 import Avatar from '../avatar'
 
 
-
 interface SidebarProps {
     isOpenMenu: boolean
     onCloseMenu: any
 }
 
-export const SideBar: FC<SidebarProps> = ({isOpenMenu, onCloseMenu}: SidebarProps) => {
+export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarProps) => {
     const btnRef = React.useRef<any>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -43,7 +37,6 @@ export const SideBar: FC<SidebarProps> = ({isOpenMenu, onCloseMenu}: SidebarProp
         dispatch(logout())
         navigate('/login')
     }
-
 
     return (
         <>
@@ -59,7 +52,6 @@ export const SideBar: FC<SidebarProps> = ({isOpenMenu, onCloseMenu}: SidebarProp
                     <DrawerHeader mb='10' display='flex' alignItems='center' justifyContent='center'>
                         <Avatar />
                     </DrawerHeader>
-
                     <DrawerBody alignItems='center' justifyContent='center'>
                         <VStack
                             divider={<StackDivider borderColor='gray.600' />}
@@ -77,9 +69,15 @@ export const SideBar: FC<SidebarProps> = ({isOpenMenu, onCloseMenu}: SidebarProp
                             </Box>
                         </VStack>
                     </DrawerBody>
-
                     <DrawerFooter>
-                        <ButtonActionSuccess colorButton='teal' icon={<ExternalLinkIcon />} isLoading={false} typeAction='button' description='Sair' action={Logout} />
+                        <ButtonActionSuccess
+                            colorButton='teal'
+                            icon={<ExternalLinkIcon />}
+                            isLoading={false}
+                            typeAction='button'
+                            description='Sair'
+                            action={Logout}
+                        />
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

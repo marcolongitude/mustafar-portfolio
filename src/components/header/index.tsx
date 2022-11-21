@@ -3,20 +3,22 @@ import {
   Box,
   Heading,
   Flex,
-  useDisclosure
+  useDisclosure,
+  useColorMode
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, SunIcon } from "@chakra-ui/icons";
 import { SideBar } from "../menuSideBar";
 
-interface Props {}
+interface Props { }
 
 export const Header: FC<Props> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <>
-        <Flex
+      <Flex
         as="nav"
         align="center"
         justify="space-between"
@@ -24,18 +26,19 @@ export const Header: FC<Props> = () => {
         padding={6}
         bg="teal.500"
         color="white"
-        >
+      >
         <Flex align="center" mr={5}>
-            <Heading as="h1" size="sm" letterSpacing={"tighter"}>
+          <Heading as="h1" size="sm" letterSpacing={"tighter"}>
             Marco Aurélio - Portfólio
-            </Heading>
+          </Heading>
         </Flex>
 
-        <Box display={{ base: "block" }} onClick={handleToggle}>
-            <HamburgerIcon />
+        <Box display={{ base: "block" }} >
+          <span onClick={toggleColorMode} >{colorMode === 'light' ? 'Dark' : 'Light'} <SunIcon marginRight="3" /> </span>
+          <HamburgerIcon onClick={handleToggle} />
         </Box>
-        </Flex>
-        <SideBar isOpenMenu={isOpen} onCloseMenu={onClose} />
+      </Flex>
+      <SideBar isOpenMenu={isOpen} onCloseMenu={onClose} />
     </>
   );
 };

@@ -26,12 +26,13 @@ export const Header: FC<Props> = () => {
         padding={6}
         bg="teal.500"
         color="white"
+        w="100%"
       >
-        <Flex align="center" mr={5}>
+        <Box alignItems="center" mr={5}>
           <Heading as="h1" size="sm" letterSpacing={"tighter"}>
             Marco Aurélio - Portfólio
           </Heading>
-        </Flex>
+        </Box>
 
         <Box display={{ base: "block" }} >
           <span onClick={toggleColorMode} >{colorMode === 'light' ? 'Dark' : 'Light'} <SunIcon marginRight="3" /> </span>

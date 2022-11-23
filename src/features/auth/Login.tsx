@@ -42,7 +42,7 @@ export const Login = () => {
 
   React.useEffect(() => {
     if (isUserLogged.token) {
-      navigate('/counter')
+      navigate('/posts')
     }
   })
 
@@ -53,7 +53,7 @@ export const Login = () => {
     try {
       const user = await login(values).unwrap()
       dispatch(setCredentials(user))
-      navigate('/counter')
+      navigate('/posts')
     } catch (err) {
       toast({
         status: 'error',

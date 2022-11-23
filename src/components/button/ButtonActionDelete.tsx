@@ -9,11 +9,11 @@ interface Props {
     description: string
     typeAction: "button" | "reset" | "submit"
     icon: any
-    colorButton: "blue" | "teal"
+    colorButton: "red"
     variantOption?: "ghost" | "outline" | "solid" | "link" | "unstyled"
 }
 
-export const ButtonActionSuccess = ({ icon, action, isLoading, description, typeAction, colorButton, variantOption = "solid" }: Props) => {
+export const ButtonActionDelete = ({ icon, action, isLoading, description, typeAction, colorButton, variantOption = "solid" }: Props) => {
     return (
         <Button
             m={3}

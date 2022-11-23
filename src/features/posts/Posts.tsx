@@ -15,15 +15,22 @@ import {
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { ButtonActionSuccess } from '../../components/button'
 import { isoToDateComplete } from '../../utils/functionsDate'
+import { ErrorNotPermission } from '../../components/errorNotPermission'
+
 
 export const Posts = () => {
-    const { data: allPosts, isLoading, isError } = useGetAllPostsQuery()
+    const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
+
+    console.log('=======================')
+    console.log(isError)
+    console.log(error)
+    console.log('=======================')
 
 
     return (
         <Box h="calc(100vh - 72px)" p='8'>
             <SimpleGrid minChildWidth='300px' columns={2} spacing={10}>
-                {allPosts && allPosts.map((post) => (
+                {!isError && allPosts && allPosts.map((post) => (
                     <Card key={post.id}>
                         <CardHeader>
                             <Heading size='md'>Detalhes do Post</Heading>
@@ -59,6 +66,9 @@ export const Posts = () => {
                         </CardFooter>
                     </Card>
                 ))}
+                {isError &&
+                    <ErrorNotPermission />
+                }
             </SimpleGrid>
         </Box>
     )

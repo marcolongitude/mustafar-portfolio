@@ -15,6 +15,7 @@ import {
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { ButtonActionSuccess } from '../../components/button'
 import { isoToDateComplete } from '../../utils/functionsDate'
+import { limitText } from '../../utils/functionsText'
 import { ErrorNotPermission } from '../../components/errorNotPermission'
 
 
@@ -43,7 +44,7 @@ export const Posts = () => {
                                         {post.name}
                                     </Heading>
                                     <Text pt='2' fontSize='sm'>
-                                        {post.description}
+                                        {limitText({ text: post.description, limit: 50 })}
                                     </Text>
                                 </Box>
                             </Stack>

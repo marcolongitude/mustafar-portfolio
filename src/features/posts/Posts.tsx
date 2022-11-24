@@ -63,10 +63,10 @@ export const Posts = () => {
                         </CardFooter>
                     </Card>
                 ))}
-                {isError && ERROR.status !== 401 &&
+                {isError && ERROR.status === 401 &&
                     <ErrorNotPermission />
                 }
-                {isError && ERROR.status === 401 &&
+                {isError && ERROR.status !== 401 &&
                     <ErrorGeneric />
                 }
             </SimpleGrid>

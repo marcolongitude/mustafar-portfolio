@@ -7,9 +7,9 @@ import {
     DrawerContent,
     DrawerCloseButton,
     DrawerFooter,
-    StackDivider,
     VStack,
     Box,
+    Button
 } from '@chakra-ui/react'
 
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -38,6 +38,10 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
         navigate('/login')
     }
 
+    const navigateLink = (route: string): void => {
+        navigate(route)
+    }
+
     return (
         <>
             <Drawer
@@ -54,18 +58,31 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                     </DrawerHeader>
                     <DrawerBody alignItems='center' justifyContent='center'>
                         <VStack
-                            divider={<StackDivider borderColor='gray.600' />}
                             spacing={4}
                             align='stretch'
                         >
-                            <Box h='20px'>
-                                Home
+                            <Box h='40px'>
+                                <Button 
+                                    justifyContent="flex-start" 
+                                    color="blackAlpha.700" 
+                                    variant="ghost" 
+                                    borderRadius='lg' 
+                                    px={4} 
+                                    w="100%"
+                                    onClick={() => navigateLink('/posts')}
+                                >
+                                    Lista de Posts
+                                </Button>
                             </Box>
-                            <Box h='20px'>
-                                Lista Posts
+                            <Box h='40px'>
+                                <Button justifyContent="flex-start" color="blackAlpha.700" variant="ghost" borderRadius='lg' px={4} w="100%">
+                                    Lista de Artigos
+                                </Button>
                             </Box>
-                            <Box h='20px'>
-                                Criar Post
+                            <Box h='40px'>
+                                <Button justifyContent="flex-start" color="blackAlpha.700" variant="ghost" borderRadius='lg' px={4} w="100%">
+                                    Lista de Artigos
+                                </Button>
                             </Box>
                         </VStack>
                     </DrawerBody>

@@ -17,15 +17,11 @@ import { ButtonActionSuccess } from '../../components/button'
 import { isoToDateComplete } from '../../utils/functionsDate'
 import { limitText } from '../../utils/functionsText'
 import { ErrorNotPermission } from '../../components/errorNotPermission'
-
+import { ErrorGeneric } from '../../components/errorGeneric'
 
 export const Posts = () => {
     const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
-
-    console.log('=======================')
-    console.log(isError)
-    console.log(error)
-    console.log('=======================')
+    const ERROR: any = error
 
 
     return (
@@ -44,7 +40,7 @@ export const Posts = () => {
                                         {post.name}
                                     </Heading>
                                     <Text pt='2' fontSize='sm'>
-                                        {limitText({ text: post.description, limit: 50 })}
+                                        {limitText({ text: post.description, limit: 150 })}
                                     </Text>
                                 </Box>
                             </Stack>
@@ -67,8 +63,11 @@ export const Posts = () => {
                         </CardFooter>
                     </Card>
                 ))}
-                {isError &&
+                {isError && ERROR.status !== 401 &&
                     <ErrorNotPermission />
+                }
+                {isError && ERROR.status === 401 &&
+                    <ErrorGeneric />
                 }
             </SimpleGrid>
         </Box>

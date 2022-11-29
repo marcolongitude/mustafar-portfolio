@@ -32,15 +32,21 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
     const btnRef = React.useRef<any>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const NAVIGATE_USER_DETAILS: string = '/users/details'
+    const NAVIGATE_POSTS: string = '/posts'
 
     const Logout = () => {
         dispatch(logout())
         navigate('/login')
     }
 
-    const navigateLink = (route: string): void => {
+    interface NavigateLinkProps {
+        route: string
+    }
+    const navigateLink = ({route}: NavigateLinkProps): void => {
         navigate(route)
     }
+
 
     return (
         <>
@@ -54,7 +60,9 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader mb='10' display='flex' alignItems='center' justifyContent='center'>
-                        <Avatar />
+                        <Avatar 
+                            onNavigate={() => navigateLink({route: NAVIGATE_USER_DETAILS})} 
+                        />
                     </DrawerHeader>
                     <DrawerBody alignItems='center' justifyContent='center'>
                         <VStack
@@ -69,7 +77,7 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                                     borderRadius='lg' 
                                     px={4} 
                                     w="100%"
-                                    onClick={() => navigateLink('/posts')}
+                                    onClick={() => navigateLink({route: NAVIGATE_POSTS})}
                                 >
                                     Lista de Posts
                                 </Button>

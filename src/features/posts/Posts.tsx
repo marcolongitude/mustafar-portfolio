@@ -11,6 +11,8 @@ import {
     StackDivider,
     SimpleGrid,
     ButtonGroup,
+    Spinner,
+    Flex
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { ButtonActionSuccess } from '../../components/button'
@@ -23,16 +25,31 @@ export const Posts = () => {
     const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
     const ERROR: any = error
 
+    console.log(allPosts, isError)
+    
+    if (!allPosts?.length) return (
+        <Flex 
+            h="calc(100vh - 72px)" 
+            w='100%'
+            justifyContent='center'
+            alignItems="center"
+        >
+            <Spinner />
+        </Flex>
+    )
 
     return (
         <Box h="calc(100vh - 72px)" p='8'>
-            <SimpleGrid minChildWidth='300px' columns={2} spacing={10}>
+            <SimpleGrid 
+                minChildWidth='300px' 
+                columns={2} 
+                spacing={10} 
+            >
                 {!isError && allPosts && allPosts.map((post) => (
-                    <Card key={post.id}>
+                    <Card key={post.id} minH="350px">
                         <CardHeader>
                             <Heading size='md'>Detalhes do Post</Heading>
                         </CardHeader>
-
                         <CardBody>
                             <Stack divider={<StackDivider />} spacing='2'>
                                 <Box>

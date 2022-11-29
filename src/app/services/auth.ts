@@ -3,6 +3,7 @@ import { RootState } from '../store'
 import { API_BASE_URL_LOGIN } from './constants'
 
 export interface User {
+    id: string
     userName: string
     userEmail: string
 }

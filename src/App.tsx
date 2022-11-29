@@ -3,11 +3,12 @@ import { Box } from '@chakra-ui/react'
 
 import { Login } from './features/auth/Login'
 import { Posts } from './features/posts/Posts'
+import { User } from './features/user/User'
 import { PageNotFount } from './features/pageNotFound/PageNotFound'
 import { PrivateOutlet } from './utils/PrivateOutLet'
 import './App.css'
 import { ToastContainer } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateOutlet />}>
+          <Route path="/users/details" element={<User />} />
           <Route path="/posts" element={<Posts />} />
           <Route path='*' element={<PageNotFount />} />
         </Route>

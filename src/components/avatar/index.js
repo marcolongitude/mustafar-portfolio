@@ -7,12 +7,17 @@ import {
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 
-export default function index() {
+export default function index({onNavigate, ...props}) {
     return (
         <Wrap>
             <WrapItem flexDirection='column' alignItems='center'>
                 <Avatar mb={5} size='2xl' name='Marco Aurélio' src='' />
-                <Button colorScheme='teal' variant='outline' rightIcon={<ArrowForwardIcon />}>{' Detalhes '}</Button>
+                <Button 
+                    onClick={onNavigate}
+                    colorScheme='teal' 
+                    variant='outline' 
+                    rightIcon={<ArrowForwardIcon />}>{' Detalhes '}
+                </Button>
             </WrapItem>
         </Wrap>
     )

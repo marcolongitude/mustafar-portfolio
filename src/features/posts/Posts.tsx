@@ -1,4 +1,4 @@
-import { useGetAllPostsQuery } from '../../app/services/posts'
+import { useGetAllPostsQuery, errorQuery } from '../../app/services/posts'
 import {
     Card,
     CardHeader,
@@ -11,8 +11,6 @@ import {
     StackDivider,
     SimpleGrid,
     ButtonGroup,
-    Spinner,
-    Flex
 } from '@chakra-ui/react'
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { ButtonActionSuccess } from '../../components/button'
@@ -20,23 +18,13 @@ import { isoToDateComplete } from '../../utils/functionsDate'
 import { limitText } from '../../utils/functionsText'
 import { ErrorNotPermission } from '../../components/errorNotPermission'
 import { ErrorGeneric } from '../../components/errorGeneric'
+import { Loading } from '../../components/loading'
 
 export const Posts = () => {
     const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
-    const ERROR: any = error
+    const ERROR = error as errorQuery
 
-    console.log(allPosts, isError)
-    
-    if (!allPosts?.length) return (
-        <Flex 
-            h="calc(100vh - 72px)" 
-            w='100%'
-            justifyContent='center'
-            alignItems="center"
-        >
-            <Spinner />
-        </Flex>
-    )
+    if (!allPosts?.length) return <Loading />
 
     return (
         <Box h="calc(100vh - 72px)" p='8'>

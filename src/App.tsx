@@ -6,7 +6,6 @@ import { Posts } from './features/posts/Posts'
 import { User } from './features/user/User'
 import { PageNotFount } from './features/pageNotFound/PageNotFound'
 import { PrivateOutlet } from './utils/PrivateOutLet'
-import './App.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

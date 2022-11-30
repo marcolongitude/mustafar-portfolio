@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
+
+import theme from './AppTheme'
+import './styles.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -14,7 +16,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
   <Provider store={store}>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

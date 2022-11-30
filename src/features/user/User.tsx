@@ -21,10 +21,11 @@ import { Loading } from '../../components/loading'
 import { errorQuery } from '../../app/services/posts'
 import { ErrorNotPermission } from '../../components/errorNotPermission'
 import { ErrorGeneric } from '../../components/errorGeneric'
-import { JsxElement } from 'typescript'
 import { ReactElement } from 'react'
 import { TextSpaceAround } from '../../components/textSpaceAround'
 import { formatCel } from '../../utils/functionsText'
+import { ButtonActionSuccess } from '../../components/button'
+import { ArrowForwardIcon, UnlockIcon } from '@chakra-ui/icons'
 
 export const User = (): ReactElement => {
     const token = localStorage.getItem('token')
@@ -61,13 +62,24 @@ export const User = (): ReactElement => {
                             />
                         </Stack>
                     </CardBody>
-                    <CardFooter justifyContent='space-between' alignItems="center" flexWrap='wrap'>
+                    <CardFooter w='100%' justifyContent='space-between' alignItems="center" flexWrap='wrap'>
                         <Box as='span' ml='2' color='gray.600' fontSize='sm'>
                             <Text fontSize='md' noOfLines={1}>
                                 <Text as='b'>Criado em: </Text> 
                                 {isoToDateComplete(user?.createAt as string)}
                             </Text>
                         </Box>
+                        <ButtonGroup spacing='2'>
+                            <ButtonActionSuccess
+                                colorButton='teal'
+                                icon={<UnlockIcon />}
+                                typeAction="button"
+                                description="Mudar a senha"
+                                isLoading={isLoading}
+                                action={undefined}
+                                variantOption="ghost"
+                            />
+                        </ButtonGroup>
                     </CardFooter>
                 </Card>
                 {isError && ERROR.status === 401 &&

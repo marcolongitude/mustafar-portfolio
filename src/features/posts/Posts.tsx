@@ -19,6 +19,7 @@ import { limitText } from '../../utils/functionsText'
 import { ErrorNotPermission } from '../../components/errorNotPermission'
 import { ErrorGeneric } from '../../components/errorGeneric'
 import { Loading } from '../../components/loading'
+import { ContainerPage } from '../../components/containerPage'
 
 export const Posts = () => {
     const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
@@ -27,7 +28,7 @@ export const Posts = () => {
     if (!allPosts?.length) return <Loading />
 
     return (
-        <Box h="calc(100vh - 72px)" p='8'>
+        <ContainerPage>
             <SimpleGrid 
                 minChildWidth='300px' 
                 columns={2} 
@@ -75,7 +76,7 @@ export const Posts = () => {
                     <ErrorGeneric />
                 }
             </SimpleGrid>
-        </Box>
+        </ContainerPage>
     )
 }
 

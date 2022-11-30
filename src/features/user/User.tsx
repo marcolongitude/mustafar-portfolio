@@ -24,6 +24,7 @@ import { ErrorGeneric } from '../../components/errorGeneric'
 import { JsxElement } from 'typescript'
 import { ReactElement } from 'react'
 import { TextSpaceAround } from '../../components/textSpaceAround'
+import { formatCel } from '../../utils/functionsText'
 
 export const User = (): ReactElement => {
     const token = localStorage.getItem('token')
@@ -48,7 +49,7 @@ export const User = (): ReactElement => {
                             />
                             <TextSpaceAround
                                 title='Celular: '
-                                description={user?.cel}
+                                description={formatCel(user?.cel)}
                             />
                             <TextSpaceAround
                                 title='Email: '

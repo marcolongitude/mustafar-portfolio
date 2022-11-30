@@ -6,7 +6,6 @@ interface ChildrenProps {
 }
 
 export const ContainerPage = ({ children }: ChildrenProps) => {
-    console.log(children)
     return (
         <Box h="calc(100vh - 72px)" p='8'>
             {React.Children.map(children, (child) => (

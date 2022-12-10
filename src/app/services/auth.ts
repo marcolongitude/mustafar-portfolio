@@ -1,26 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store'
-import { API_BASE_URL_LOGIN } from './constants'
+import { LoginRequest, UserResponse } from '../interfaces/authInterfaces'
+import { API_BASE_URL_LOGIN } from '../constants'
 
-export interface User {
-    id: string
-    userName: string
-    userEmail: string
-}
 
-export interface UserResponse {
-    user: User
-    accessToken: string
-    authenticated: boolean
-    message: string
-    expiration: Date
-    created: Date
-}
-
-export interface LoginRequest {
-    email: string
-    password: string
-}
 
 export const api = createApi({
     reducerPath: 'api_root',

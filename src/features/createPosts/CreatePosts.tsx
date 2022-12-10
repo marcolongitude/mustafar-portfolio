@@ -1,5 +1,5 @@
 import { useCreatePostMutation } from '../../app/services/posts'
-import type { CreatePostRequest } from '../../app/services/posts'
+import type { CreatePostRequest } from '../../app/interfaces/postsInterfaces'
 import {
     Card,
     CardHeader,
@@ -30,7 +30,6 @@ import { ErrorGeneric } from '../../components/errorGeneric'
 import { Loading } from '../../components/loading'
 import { ContainerPage } from '../../components/containerPage'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
 import TextHighlight from '../../components/textHyghlight/TextHighlight'
 
 import jwt_decode from 'jwt-decode'
@@ -40,10 +39,6 @@ type FormValues = {
     description: string;
     userId: string;
 };
-
-type decodedType = {
-    sid: string
-}
 
 export const CreatePosts = () => {
     const toast = useToast()

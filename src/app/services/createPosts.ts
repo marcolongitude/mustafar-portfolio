@@ -1,19 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store'
-import { API_BASE_URL } from './constants'
+import { CreatePostRequest, CreatePostResponse } from '../interfaces/postsInterfaces'
+import { API_BASE_URL } from '../constants'
 
-export interface CreatePostResponse {
-    name: string
-    description: string
-    userId: string
-}
 
-export interface CreatePostRequest {
-    id: string
-    name: string
-    description: string
-    created_at: string
-}
 
 export const api = createApi({
     reducerPath: 'api_root_create_posts',

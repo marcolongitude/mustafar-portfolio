@@ -1,14 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_BASE_URL } from './constants'
-
-export interface UserResponse {
-    name: string
-    email: string
-    cel: string
-    permission: "admin" | "common" | undefined
-    createAt: string
-}
-
+import { UserResponse } from '../interfaces/usersInterfaces'
+import { API_BASE_URL } from '../constants'
 
 export const apiUser = createApi({
     reducerPath: 'api_root_user',

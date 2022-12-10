@@ -1,30 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_BASE_URL } from './constants'
+import { API_BASE_URL } from '../constants'
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import type { CreatePostRequest, CreatePostResponse, PostsResponse } from '../interfaces/postsInterfaces'
 
-export interface Post {
-    id: string
-    name: string
-    description: string
-    userId: string
-    createAt: string
-}
-
-export type PostsResponse = Post[]
 
 export type errorQuery = FetchBaseQueryError
-
-export interface CreatePostResponse {
-    name: string
-    description: string
-    userId: string
-}
-
-export interface CreatePostRequest {
-    userId: string
-    name: string
-    description: string
-}
 
 export const apiPosts = createApi({
     reducerPath: 'api_root_posts',

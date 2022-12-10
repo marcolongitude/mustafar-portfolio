@@ -25,14 +25,16 @@ export const Posts = () => {
     const { data: allPosts, isLoading, isError, error, } = useGetAllPostsQuery()
     const ERROR = error as errorQuery
 
-    if (!allPosts?.length) return <Loading />
+    console.log('===> ', allPosts)
+
+    if (allPosts == null) return <Loading />
 
     return (
         <ContainerPage>
-            <SimpleGrid 
-                minChildWidth='300px' 
-                columns={2} 
-                spacing={10} 
+            <SimpleGrid
+                minChildWidth='300px'
+                columns={2}
+                spacing={10}
             >
                 {!isError && allPosts && allPosts.map((post) => (
                     <Card key={post.id} minH="350px">
@@ -69,6 +71,11 @@ export const Posts = () => {
                         </CardFooter>
                     </Card>
                 ))}
+                {allPosts?.length == 0 &&
+                    <Box display="flex" alignItems="center" mt="5" justifyContent="center">
+                        <Heading size='md'>Você ainda não criou posts</Heading>
+                    </Box>
+                }
                 {isError && ERROR.status === 401 &&
                     <ErrorNotPermission />
                 }

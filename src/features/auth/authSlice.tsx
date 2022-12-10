@@ -21,6 +21,9 @@ const slice = createSlice({
             state,
             { payload: { user, accessToken } }: PayloadAction<{ user: User; accessToken: string }>
         ) => {
+            console.log('00000000000000000000')
+            console.log(user)
+            console.log('00000000000000000000')
             state.user = user
             state.accessToken = accessToken
             localStorage.setItem("token", accessToken)

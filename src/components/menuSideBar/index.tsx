@@ -34,6 +34,7 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
     const navigate = useNavigate()
     const NAVIGATE_USER_DETAILS: string = '/users/details'
     const NAVIGATE_POSTS: string = '/posts'
+    const NAVIGATE_POSTS_CREATE: string = '/posts/create'
 
     const Logout = () => {
         dispatch(logout())
@@ -43,7 +44,7 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
     interface NavigateLinkProps {
         route: string
     }
-    const navigateLink = ({route}: NavigateLinkProps): void => {
+    const navigateLink = ({ route }: NavigateLinkProps): void => {
         navigate(route)
     }
 
@@ -60,8 +61,8 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader mb='10' display='flex' alignItems='center' justifyContent='center'>
-                        <Avatar 
-                            onNavigate={() => navigateLink({route: NAVIGATE_USER_DETAILS})} 
+                        <Avatar
+                            onNavigate={() => navigateLink({ route: NAVIGATE_USER_DETAILS })}
                         />
                     </DrawerHeader>
                     <DrawerBody alignItems='center' justifyContent='center'>
@@ -70,21 +71,29 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                             align='stretch'
                         >
                             <Box h='40px'>
-                                <Button 
-                                    justifyContent="flex-start" 
-                                    color="blackAlpha.700" 
-                                    variant="ghost" 
-                                    borderRadius='lg' 
-                                    px={4} 
+                                <Button
+                                    justifyContent="flex-start"
+                                    color="blackAlpha.700"
+                                    variant="ghost"
+                                    borderRadius='lg'
+                                    px={4}
                                     w="100%"
-                                    onClick={() => navigateLink({route: NAVIGATE_POSTS})}
+                                    onClick={() => navigateLink({ route: NAVIGATE_POSTS })}
                                 >
                                     Lista de Posts
                                 </Button>
                             </Box>
                             <Box h='40px'>
-                                <Button justifyContent="flex-start" color="blackAlpha.700" variant="ghost" borderRadius='lg' px={4} w="100%">
-                                    Lista de Artigos
+                                <Button
+                                    justifyContent="flex-start"
+                                    color="blackAlpha.700"
+                                    variant="ghost"
+                                    borderRadius='lg'
+                                    px={4}
+                                    w="100%"
+                                    onClick={() => navigateLink({ route: NAVIGATE_POSTS_CREATE })}
+                                >
+                                    Criar Posts
                                 </Button>
                             </Box>
                             <Box h='40px'>

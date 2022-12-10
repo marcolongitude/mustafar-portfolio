@@ -52,6 +52,9 @@ export const Login = () => {
   async function onSubmit(values: LoginRequest) {
     try {
       const user = await login(values).unwrap()
+      console.log('22222222222222222222222')
+      console.log(user)
+      console.log('22222222222222222222222')
       dispatch(setCredentials(user))
       navigate('/posts')
     } catch (err) {

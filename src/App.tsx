@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react'
 
 import { Login } from './features/auth/Login'
 import { Posts } from './features/posts/Posts'
+import { CreatePosts } from './features/createPosts/CreatePosts'
 import { User } from './features/user/User'
 import { PageNotFount } from './features/pageNotFound/PageNotFound'
 import { PrivateOutlet } from './utils/PrivateOutLet'
@@ -18,6 +19,7 @@ function App() {
         <Route element={<PrivateOutlet />}>
           <Route path="/users/details" element={<User />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/create" element={<CreatePosts />} />
           <Route path='*' element={<PageNotFount />} />
         </Route>
         <Route path="*" element={<PageNotFount />} />

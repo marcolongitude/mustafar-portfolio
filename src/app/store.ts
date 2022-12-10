@@ -8,11 +8,11 @@ import { rtkQueryErrorLogger } from './services/errorHandling'
 
 export const store = configureStore({
   reducer: {
-        [api.reducerPath]: api.reducer,
-        [apiPosts.reducerPath]: apiPosts.reducer,
-        [apiUser.reducerPath]: apiUser.reducer,
-        auth: authReducer,
-        posts: postsReducer,
+    [api.reducerPath]: api.reducer,
+    [apiPosts.reducerPath]: apiPosts.reducer,
+    [apiUser.reducerPath]: apiUser.reducer,
+    auth: authReducer,
+    posts: postsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(rtkQueryErrorLogger, api.middleware, apiUser.middleware, apiPosts.middleware),

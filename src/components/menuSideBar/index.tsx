@@ -8,8 +8,6 @@ import {
     DrawerCloseButton,
     DrawerFooter,
     VStack,
-    Box,
-    Button
 } from '@chakra-ui/react'
 
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -19,35 +17,37 @@ import { logout } from '../../features/auth/authSlice'
 
 import { useNavigate } from 'react-router-dom'
 
+import { NavLink } from './navLink'
 import { ButtonActionSuccess } from '../button'
 import Avatar from '../avatar'
+
+import { propsNavigation } from './dataLinks'
 
 
 interface SidebarProps {
     isOpenMenu: boolean
     onCloseMenu: any
+    icon?: any
 }
 
-export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarProps) => {
+interface NavigateLinkProps {
+    route: string
+}
+
+export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu, icon }: SidebarProps) => {
     const btnRef = React.useRef<any>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const NAVIGATE_USER_DETAILS: string = '/users/details'
-    const NAVIGATE_POSTS: string = '/posts'
-    const NAVIGATE_POSTS_CREATE: string = '/posts/create'
+
+    const navigateLink = ({ route }: NavigateLinkProps): void => {
+        navigate(route)
+    }
 
     const Logout = () => {
         dispatch(logout())
         navigate('/login')
     }
-
-    interface NavigateLinkProps {
-        route: string
-    }
-    const navigateLink = ({ route }: NavigateLinkProps): void => {
-        navigate(route)
-    }
-
 
     return (
         <>
@@ -70,37 +70,16 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu }: SidebarPr
                             spacing={4}
                             align='stretch'
                         >
-                            <Box h='40px'>
-                                <Button
-                                    justifyContent="flex-start"
-                                    color="blackAlpha.700"
-                                    variant="ghost"
-                                    borderRadius='lg'
-                                    px={4}
-                                    w="100%"
-                                    onClick={() => navigateLink({ route: NAVIGATE_POSTS })}
-                                >
-                                    Lista de Posts
-                                </Button>
-                            </Box>
-                            <Box h='40px'>
-                                <Button
-                                    justifyContent="flex-start"
-                                    color="blackAlpha.700"
-                                    variant="ghost"
-                                    borderRadius='lg'
-                                    px={4}
-                                    w="100%"
-                                    onClick={() => navigateLink({ route: NAVIGATE_POSTS_CREATE })}
-                                >
-                                    Criar Posts
-                                </Button>
-                            </Box>
-                            <Box h='40px'>
-                                <Button justifyContent="flex-start" color="blackAlpha.700" variant="ghost" borderRadius='lg' px={4} w="100%">
-                                    Lista de Artigos
-                                </Button>
-                            </Box>
+                            {propsNavigation.length && propsNavigation.map(nav => (
+                                <NavLink
+                                    key={nav.key}
+                                    link={{
+                                        navigation: () => navigateLink({ route: nav.route }),
+                                        label: nav.label,
+                                        icon: nav.icon
+                                    }}
+                                />
+                            ))}
                         </VStack>
                     </DrawerBody>
                     <DrawerFooter>

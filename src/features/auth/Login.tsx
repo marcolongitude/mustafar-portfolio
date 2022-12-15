@@ -10,6 +10,7 @@ import {
   useToast,
   Flex,
 } from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/react'
 import { ViewOffIcon, ViewIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 
 import { useNavigate } from 'react-router-dom'
@@ -20,7 +21,7 @@ import { useForm } from 'react-hook-form'
 import { ButtonActionSuccess } from '../../components/button/ButtonActionSuccess'
 
 import { useLoginMutation } from '../../app/services/auth'
-import type { LoginRequest } from '../../app/services/auth'
+import type { LoginRequest } from '../../app/interfaces/authInterfaces'
 
 import { useAuth } from '../../hooks/useAuth'
 
@@ -36,9 +37,10 @@ export const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
-  const [isUserLogged] = React.useState(useAuth());
+  const [isUserLogged] = React.useState(useAuth())
   const [login, { isLoading }] = useLoginMutation()
   const [show, setShow] = React.useState(false)
+  const [isLargerThan600] = useMediaQuery('(min-width: 600px)')
 
   React.useEffect(() => {
     if (isUserLogged.token) {
@@ -84,7 +86,7 @@ export const Login = () => {
       <Box
         p='5'
         bg="blackAlpha.800"
-        width='30%'
+        w={{ base: "85%", sm: "60%", md: "55%", lg: "40%" }}
         minW='72'
         h='350px'
         borderRadius='15'

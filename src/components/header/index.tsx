@@ -9,6 +9,8 @@ import {
 import { HamburgerIcon, SunIcon } from "@chakra-ui/icons";
 import { SideBar } from "../menuSideBar";
 
+import { FaMoon, FaSun } from "react-icons/fa";
+
 interface Props { }
 
 export const Header: FC<Props> = () => {
@@ -34,10 +36,10 @@ export const Header: FC<Props> = () => {
           </Heading>
         </Box>
 
-        <Box display={{ base: "block" }} >
-          <span onClick={toggleColorMode} >{colorMode === 'light' ? 'Dark' : 'Light'} <SunIcon marginRight="3" /> </span>
+        <Flex flexDirection="row" justifyContent="space-around" >
+          <Box mr={3} onClick={toggleColorMode} >{colorMode === "dark" ? <FaSun /> : <FaMoon />} </Box>
           <HamburgerIcon onClick={handleToggle} />
-        </Box>
+        </Flex>
       </Flex>
       <SideBar isOpenMenu={isOpen} onCloseMenu={onClose} />
     </>

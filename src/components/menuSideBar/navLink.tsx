@@ -1,5 +1,4 @@
 import { Flex, Icon, Text, Box, Link } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 
 interface Props {
     link: {
@@ -10,8 +9,6 @@ interface Props {
 }
 
 export function NavLink({ link, ...rest }: Props) {
-
-    console.log(link.icon)
 
     return (
         <Box>

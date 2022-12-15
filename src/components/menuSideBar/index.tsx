@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { NavLink } from './navLink'
 import { ButtonActionSuccess } from '../button'
-import Avatar from '../avatar'
+import { AvatarUser } from '../avatar'
 
 import { propsNavigation } from './dataLinks'
 
@@ -61,9 +61,7 @@ export const SideBar: FC<SidebarProps> = ({ isOpenMenu, onCloseMenu, icon }: Sid
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader mb='10' display='flex' alignItems='center' justifyContent='center'>
-                        <Avatar
-                            onNavigate={() => navigateLink({ route: NAVIGATE_USER_DETAILS })}
-                        />
+                        <AvatarUser />
                     </DrawerHeader>
                     <DrawerBody alignItems='center' justifyContent='center'>
                         <VStack

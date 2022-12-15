@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { PostsResponse } from '../../app/services/posts'
+import type { PostsResponse } from '../../app/interfaces/postsInterfaces'
 import type { RootState } from '../../app/store'
 
 type PostState = {

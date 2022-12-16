@@ -20,6 +20,8 @@ import {
     Input,
     InputGroup,
     InputRightElement,
+    InputLeftAddon,
+    Textarea,
 } from '@chakra-ui/react'
 import { ArrowForwardIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { ButtonActionSuccess } from '../../components/button'
@@ -31,8 +33,13 @@ import { Loading } from '../../components/loading'
 import { ContainerPage } from '../../components/containerPage'
 import { useForm } from 'react-hook-form'
 import TextHighlight from '../../components/textHyghlight/TextHighlight'
+import { selectUser } from '../../hooks/useUserState'
+import { useSelector } from 'react-redux'
 
 import jwt_decode from 'jwt-decode'
+import { FaRegSave } from 'react-icons/fa'
+import { FileUpload } from '../../components/form/fileUpload'
+
 
 type FormValues = {
     name: string;
@@ -50,6 +57,11 @@ export const CreatePosts = () => {
         decoded = jwt_decode(token);
     }
 
+    const userTeste = useSelector(selectUser)
+    console.log('***********************')
+    console.log(userTeste)
+    console.log('***********************')
+
     console.log(decoded.sid);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
@@ -58,7 +70,7 @@ export const CreatePosts = () => {
         try {
             values.userId = decoded.sid
             const postCreated = await createPost(values).unwrap()
-            // console.log('post created => ', postCreated)
+            console.log('post created => ', postCreated)
         } catch (err) {
             toast({
                 status: 'error',
@@ -71,78 +83,68 @@ export const CreatePosts = () => {
 
 
     return (
-        <Box
-            width='100%'
-            h='100vh'
-            bg='gray.100'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            bgGradient={[
-                'linear(to-tr, teal.500, yellow.300)',
-                'linear(to-t, blue.500, teal.500)',
-                'linear(to-b, orange.100, purple.600)',
-            ]}
-        >
-            <Box
-                p='5'
-                bg="blackAlpha.800"
-                width='30%'
-                minW='72'
-                h='350px'
-                borderRadius='15'
-                display='flex'
-                justifyContent='center'
-            >
-                <Flex justify='center' align='center' direction='column' color='white'>
-                    <TextHighlight description='Criar Post - Marco Aurélio' query='Marco Aurélio' />
-                    <form style={{ marginTop: '20px' }} onSubmit={handleSubmit(onSubmit)}>
-                        <Flex justify='center' align='center' direction='column' color='white'>
-                            <FormControl isInvalid={errors.name ? true : false} >
-                                <InputGroup display='flex' flexDirection='column' mb={5}>
+        <ContainerPage>
+            <Flex justify='center' align='center' direction='column'>
+                <TextHighlight description='Portfólio Criar Post para blog' query='Portfólio' />
+                <form style={{ marginTop: '20px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onSubmit={handleSubmit(onSubmit)}>
+                    <Flex w={{ base: '90%', md: '80%', lg: '65%' }} justify='center' align='center' direction='column' color='white'>
+                        <FormControl >
+                            <InputGroup display='flex' mb={5}>
+                                <FileUpload />
+                            </InputGroup>
+                        </FormControl>
+
+                        <FormControl isInvalid={errors.name ? true : false} >
+                            <InputGroup display='flex' flexDirection='column' mb={5}>
+                                <InputGroup>
+                                    <InputLeftAddon color='teal.500' children='Título' />
                                     <Input
                                         {...register('name', {
                                             required: 'Campo obrigatório',
                                         })}
-                                        type="required"
+                                        color="teal.500"
                                         placeholder="Digite seu nome"
-                                        _placeholder={{ opacity: 1, color: 'white' }}
+                                        _placeholder={{ opacity: 1, color: 'teal.500' }}
                                     />
-                                    <FormErrorMessage color='red.500'>
-                                        {errors?.name && errors.name.message}
-                                    </FormErrorMessage>
                                 </InputGroup>
-                            </FormControl>
+                                <FormErrorMessage color='red.500'>
+                                    {errors?.name && errors.name.message}
+                                </FormErrorMessage>
+                            </InputGroup>
+                        </FormControl>
 
-                            <FormControl isInvalid={errors.description ? true : false} >
-                                <InputGroup display='flex' flexDirection='column' mb={5}>
-                                    <Input
-                                        {...register('description', {
-                                            required: 'Campo obrigatório',
-                                        })}
-                                        pr="4.5rem"
-                                        placeholder="Digite a descrição"
-                                        _placeholder={{ opacity: 1, color: 'white' }}
-                                    />
-                                    <FormErrorMessage color='red.500'>
-                                        {errors?.description && errors.description.message}
-                                    </FormErrorMessage>
-                                </InputGroup>
-                            </FormControl>
 
-                            <ButtonActionSuccess
-                                colorButton='blue'
-                                icon={<ArrowForwardIcon />}
-                                typeAction="submit"
-                                description="Salvar"
-                                isLoading={isLoading}
-                                action={undefined}
-                            />
-                        </Flex>
-                    </form>
-                </Flex>
-            </Box>
-        </Box>
+                        <FormControl isInvalid={errors.description ? true : false} >
+                            <InputGroup display='flex' flexDirection='column' mb={5}>
+                                <Textarea
+                                    {...register('description', {
+                                        required: 'Campo obrigatório',
+                                    })}
+                                    color="teal.500"
+                                    rows={7}
+                                    size='lg'
+                                    pr="4.5rem"
+                                    placeholder="Digite a descrição"
+                                    _placeholder={{ opacity: 1, color: 'teal.500' }}
+                                />
+                                <FormErrorMessage color='red.500'>
+                                    {errors?.description && errors.description.message}
+                                </FormErrorMessage>
+                            </InputGroup>
+                        </FormControl>
+
+                        <ButtonActionSuccess
+                            colorButton='teal'
+                            icon={<FaRegSave />}
+                            typeAction="submit"
+                            description="Salvar"
+                            isLoading={isLoading}
+                            action={undefined}
+                        />
+                    </Flex>
+                </form>
+            </Flex>
+        </ContainerPage>
     )
 }
 
